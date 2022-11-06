@@ -42,17 +42,19 @@ export const Header: React.FunctionComponent = () => {
         <VscSearch />
         <GiHamburgerMenu />
       </IconsContainer>
-      <ToggleTheme {...(theme === 'light' ? {variant: 'light'} : {variant: 'dark'})} onClick={toggleTheme}>
-        {theme === 'light' ? (
+      {theme === 'light' ? (
+        <ToggleTheme variant="light" onClick={toggleTheme}>
           <div>
             <BsFillSunFill />
           </div>
-        ) :
+        </ToggleTheme>
+      ) : 
+        <ToggleTheme variant="dark" onClick={toggleTheme}>
           <div>
             <BsFillMoonStarsFill />
           </div>
-        }
-      </ToggleTheme>
+        </ToggleTheme>
+      }
     </Container>
   )
 }
