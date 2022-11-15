@@ -1,3 +1,2 @@
 # Blog Template
-
-## This template was made with Nextjs + Strapi.
+An template made with Nextjs + Strapi.
