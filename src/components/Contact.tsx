@@ -7,44 +7,7 @@ export const Contact: React.FunctionComponent = () => {
   const aboutMe = {
     title: 'About Me',
     topics: [{
-      name: 'My Team',
-      url: '#'
-    }, {
-      name: 'History',
-      url: '#'
-    }, {
-      name: 'My Products',
-      url: '#'
-    }, {
-      name: 'Blogging',
-      url: '#'
-    }]
-  }
-
-  const resourses = {
-    title: 'Resources',
-    topics: [{
-      name: 'Webinars',
-      url: '#'
-    }, {
-      name: 'Courses',
-      url: '#'
-    }, {
-      name: 'Books',
-      url: '#'
-    }, {
-      name: 'Marketing',
-      url: '#'
-    }]
-  }
-
-  const contact = {
-    title: 'Contact',
-    topics: [{
-      name: 'Privacy Policy',
-      url: '#'
-    }, {
-      name: 'Terms of use',
+      name: 'My Portifolio',
       url: '#'
     }]
   }
@@ -82,26 +45,6 @@ export const Contact: React.FunctionComponent = () => {
             <H6>{aboutMe.title}</H6>
             <div>
               {aboutMe.topics.map(topic => (
-                <Link key={topic.name} href={topic.url}>
-                  <a>{topic.name}</a>
-                </Link>
-              ))}
-            </div>
-          </div>
-          <div>
-            <H6>{resourses.title}</H6>
-            <div>
-              {resourses.topics.map(topic => (
-                <Link key={topic.name} href={topic.url}>
-                  <a>{topic.name}</a>
-                </Link>
-              ))}
-            </div>
-          </div>
-          <div>
-            <H6>{contact.title}</H6>
-            <div>
-              {contact.topics.map(topic => (
                 <Link key={topic.name} href={topic.url}>
                   <a>{topic.name}</a>
                 </Link>

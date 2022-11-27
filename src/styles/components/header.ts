@@ -47,9 +47,39 @@ export const IconsContainer = styled('div', {
   display: 'flex',
   gap: rem(45),
 
-
   '@sm': {
     display: 'none'
+  }
+})
+
+export const ToggleMenu = styled('div', {
+  variants: {
+    variant: {
+      opened: {
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        width: rem(136),
+        height: '100vh',
+        backgroundColor: '$gray400',
+        zIndex: 1,
+
+        padding: rem(20),
+
+        a: {
+          marginTop: rem(16),
+          width: 'fit-content'
+        },
+          
+        '*': {
+          display: 'block',
+          marginLeft: 'auto'
+        }
+      },
+      closed: {
+        
+      }
+    }
   }
 })
 
@@ -63,10 +93,13 @@ export const ToggleTheme = styled("button", {
   transition: 'padding 0.2s',
   padding: `${rem(2)} ${rem(4)}`,
 
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  
+  display: 'none',
+
+  "@sm": {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 
   div: {
     width: rem(28),
@@ -85,15 +118,15 @@ export const ToggleTheme = styled("button", {
 
   variants: {
     variant: {
-      dark: {
-        paddingLeft: rem(64 - 28),
-      },
       light: {
         paddingRight: rem(64 - 28),
 
         svg: {
           color: "#F8BE2E"
         }
+      },
+      dark: {
+        paddingLeft: rem(64 - 28),
       }
     }
   }

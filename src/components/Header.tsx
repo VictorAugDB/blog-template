@@ -1,15 +1,32 @@
 import Link from "next/link"
-import { Container, IconsContainer, Logo, Topics, ToggleTheme } from "../styles/components/header"
-import { VscSearch } from 'react-icons/vsc'
+import { Container, IconsContainer, Logo, Topics, ToggleTheme, ToggleMenu } from "../styles/components/header"
 import { GiHamburgerMenu } from 'react-icons/gi'
 import { useTheme } from "next-themes";
 import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs"
+import { useEffect, useState } from "react";
 
 export const Header: React.FunctionComponent = () => {
   const { theme, setTheme } = useTheme()
+  const [ defaultTheme, setDefaultTheme ] = useState("light")
+  const [isMenuOpened, setIsMenuOpened] = useState(false)
+  
 
-  const toggleTheme = () => 
+  const toggleTheme = () => {
+    setDefaultTheme(theme === "light" ? "dark" : "light")
+
     setTheme(theme === "light" ? "dark" : "light")
+  }
+    
+
+  const handleOpenMenu = () => {
+    setIsMenuOpened(!isMenuOpened)
+  }
+
+  useEffect(() => {
+    if(theme === "dark") {
+      setDefaultTheme("dark")
+    }
+  }, [])
 
   return (
     <Container>
@@ -27,33 +44,37 @@ export const Header: React.FunctionComponent = () => {
         <Link href="#">
           <a>About Me</a>
         </Link>
-        <Link href="#">
-          <a>Features</a>
-        </Link>
-        <Link href="#">
-          <a>Cart</a>
-        </Link>
-        <Link href="#">
-          <a>Contact Me</a>
-        </Link>
-        <VscSearch />
       </Topics>
       <IconsContainer>
-        <VscSearch />
-        <GiHamburgerMenu />
+        {isMenuOpened ? (
+          <ToggleMenu variant='opened'>
+            <GiHamburgerMenu onClick={handleOpenMenu}/>
+            
+            <Topics>
+              <Link href="#" >
+                <a>Home</a>
+              </Link>
+              <Link href="#">
+                <a>About Me</a>
+              </Link>
+            </Topics>
+          </ToggleMenu>
+        ) : (
+          <ToggleMenu variant='closed'>
+            <GiHamburgerMenu onClick={handleOpenMenu}/>
+          </ToggleMenu>
+        )}
       </IconsContainer>
-      {theme === 'light' ? (
-        <ToggleTheme variant="light" onClick={toggleTheme}>
-          <div>
-            <BsFillSunFill />
-          </div>
-        </ToggleTheme>
-      ) : 
-        <ToggleTheme variant="dark" onClick={toggleTheme}>
-          <div>
-            <BsFillMoonStarsFill />
-          </div>
-        </ToggleTheme>
+      {
+        
+        <ToggleTheme variant={defaultTheme === "light" ? "light" : "dark"} onClick={toggleTheme}>
+        <div>
+          {
+            defaultTheme === "light" ? <BsFillSunFill /> : <BsFillMoonStarsFill />
+          }
+        </div>
+      </ToggleTheme>
+        
       }
     </Container>
   )
